@@ -6,7 +6,7 @@ O layout do projeto foi prototipado no [Figma](https://www.figma.com/file/LWfUk8
 
 🧱 Instalação
 ###
-Este projeto utiliza o native-base (https://docs.expo.io/), portanto, você precisará instalá-los para instalar as dependências.
+Este projeto utiliza o native-base (https://docs.expo.io/), portanto, você precisará instalar as dependências.
 
 ##
 
