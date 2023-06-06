@@ -1,85 +1,123 @@
-import React from "react";
+import React, { useState } from 'react';
 import {
-  Text,
-  Link,
-  HStack,
-  Center,
-  Heading,
-  Switch,
-  useColorMode,
-  NativeBaseProvider,
-  extendTheme,
-  VStack,
+  Button,
   Box,
-} from "native-base";
-import NativeBaseIcon from "./components/NativeBaseIcon";
-import { Platform } from "react-native";
+  Input,
+  Stack,
+  Icon,
+  Pressable,
+  NativeBaseProvider,
+  Text,
+  KeyboardAvoidingView,
+  ScrollView,
+} from 'native-base';
+import { MaterialIcons, Entypo } from '@expo/vector-icons';
+import { Image } from 'native-base';
+import logo from './assets/logo.png';
 
-// Define the config
-const config = {
-  useSystemColorMode: false,
-  initialColorMode: "dark",
+const Example = () => {
+  const [show, setShow] = useState(false);
+
+  return (
+    <KeyboardAvoidingView
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      flex={1}
+      bg=" #202024"
+    >
+      <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+        <Stack
+          flex={1}
+          space={4}
+          w="100%"
+          alignItems="center"
+          justifyContent="center"
+          paddingY={8}
+        >
+          <Image
+            marginTop="80px"
+            source={logo}
+            alt="Logo"
+            style={{ width: 150, height: 150 }}
+          />
+          <Text bold fontSize="20px" style={{ color: '#ffffff' }}>
+            Acesse sua conta
+          </Text>
+
+          <Input
+            fontSize="15px"
+            color="white"
+            borderColor="transparent"
+            marginTop="70px"
+            bg="#121214"
+            w={{
+              base: '75%',
+              md: '25%',
+            }}
+            InputLeftElement={
+              <Icon
+                as={<MaterialIcons name="email" />}
+                size={5}
+                ml="2"
+                color="muted.400"
+              />
+            }
+            placeholder="Email"
+          />
+          <Input
+            color="white"
+            fontSize="15px"
+            borderColor="transparent"
+            bg="#121214"
+            w={{
+              base: '75%',
+              md: '25%',
+            }}
+            InputLeftElement={
+              <Icon
+                as={<MaterialIcons name="vpn-key" />}
+                size={5}
+                ml="2"
+                color="muted.400"
+              />
+            }
+            placeholder="Password"
+            type={show ? 'text' : 'password'}
+            InputRightElement={
+              <Pressable onPress={() => setShow(!show)}>
+                <Icon
+                  as={
+                    <MaterialIcons
+                      name={show ? 'visibility' : 'visibility-off'}
+                    />
+                  }
+                  size={5}
+                  mr="2"
+                  color="muted.400"
+                />
+              </Pressable>
+            }
+          />
+
+          <Box width="75%" marginTop="30px">
+            <Button
+              height="27%"
+              onPress={() => console.log('hello world')}
+              bg="#E51C44"
+              size="md"
+            >
+              Entrar
+            </Button>
+          </Box>
+        </Stack>
+      </ScrollView>
+    </KeyboardAvoidingView>
+  );
 };
-
-// extend the theme
-export const theme = extendTheme({ config });
 
 export default function App() {
   return (
     <NativeBaseProvider>
-      <Center
-        _dark={{ bg: "blueGray.900" }}
-        _light={{ bg: "blueGray.50" }}
-        px={4}
-        flex={1}
-      >
-        <VStack space={5} alignItems="center">
-          <NativeBaseIcon />
-          <Heading size="lg">Welcome to NativeBase</Heading>
-          <HStack space={2} alignItems="center">
-            <Text>Edit</Text>
-            <Box
-              _web={{
-                _text: {
-                  fontFamily: "monospace",
-                  fontSize: "sm",
-                },
-              }}
-              px={2}
-              py={1}
-              _dark={{ bg: "blueGray.800" }}
-              _light={{ bg: "blueGray.200" }}
-            >
-              App.js
-            </Box>
-            <Text>and save to reload.</Text>
-          </HStack>
-          <Link href="https://docs.nativebase.io" isExternal>
-            <Text color="primary.500" underline fontSize={"xl"}>
-              Learn NativeBase
-            </Text>
-          </Link>
-          <ToggleDarkMode />
-        </VStack>
-      </Center>
+      <Example />
     </NativeBaseProvider>
-  );
-}
-
-// Color Switch Component
-function ToggleDarkMode() {
-  const { colorMode, toggleColorMode } = useColorMode();
-  return (
-    <HStack space={2} alignItems="center">
-      <Text>Dark</Text>
-      <Switch
-        isChecked={colorMode === "light"}
-        onToggle={toggleColorMode}
-        aria-label={
-          colorMode === "light" ? "switch to dark mode" : "switch to light mode"
-        }
-      />
-      <Text>Light</Text>
-    </HStack>
   );
 }
