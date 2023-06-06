@@ -1,4 +1,4 @@
-<img  align="right" src="https://github.com/marcellypereira/missao2/assets/116754560/e0c165a1-1783-4c48-840c-9f6f41074e75" alt='img'  width="400px" height="800px"/>
+<img  align="right" src="https://github.com/marcellypereira/missao2/assets/116754560/e0c165a1-1783-4c48-840c-9f6f41074e75" alt='img'  width="250px" height="450px"/>
 
 Este é um projeto da página de login desenvolvido em React Native, utilizando o Expo Go. 
 
